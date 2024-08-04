@@ -1,4 +1,4 @@
-# Basic Spring Project with MVC, Security, and Spring Data Support
+# Basic Spring Project with MVC, Spring Data JPA, and H2 Database
 
 ## Prerequisites
 
@@ -7,29 +7,68 @@
 
 ## Setup
 
-1. Clone the repository:
+1. **Clone the Repository:**
     ```sh
     git clone <repository-url>
     cd <project-directory>
     ```
 
-2. Build the project:
+2. **Build the Project:**
     ```sh
     mvn clean install
     ```
 
-3. Run the application:
+3. **Run the Application:**
     ```sh
     mvn spring-boot:run
     ```
 
-4. Access the H2 console at `http://localhost:9090/h2-console` with the following credentials:
-    - URL: `jdbc:h2:mem:testdb`
+4. **Access the H2 Console:**
+    - URL: `http://localhost:9090/h2-console`
+    - JDBC URL: `jdbc:h2:mem:testdb`
     - User: `sa`
     - Password: `password`
 
 ## Endpoints
 
-- `POST /students` - Create a student
-- `GET /students` - Get a list of all students
-- `GET /subjects` - Get a list of all subjects
+- **Create a Student:**
+    - `POST /students`
+    - Request Body:
+      ```json
+      {
+        "name": "Student Name",
+        "address": "Student Address"
+      }
+      ```
+
+- **Get List of All Students:**
+    - `GET /students`
+    - Response:
+      ```json
+      [
+        {
+          "id": 1,
+          "name": "Student Name",
+          "address": "Student Address",
+          "subjects": [...]
+        }
+      ]
+      ```
+
+- **Get List of All Subjects:**
+    - `GET /subjects`
+    - Response:
+      ```json
+      [
+        {
+          "id": 1,
+          "name": "Subject Name"
+        }
+      ]
+      ```
+
+## Notes
+
+- The application uses an in-memory H2 database for development purposes.
+- No security configuration is applied; endpoints are accessible without authentication.
+
